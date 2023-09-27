@@ -1,6 +1,6 @@
 {
   "name": "capacitor-health-data-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "capacitor plugin that uses sensors for retrieving health-related data",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
