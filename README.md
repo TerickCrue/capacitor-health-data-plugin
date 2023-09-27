@@ -15,6 +15,7 @@ npx cap sync
 
 * [`echo(...)`](#echo)
 * [`getSteps()`](#getsteps)
+* [`getHeartRate()`](#getheartrate)
 * [`checkPermission(...)`](#checkpermission)
 * [`openAppSettings()`](#openappsettings)
 * [Interfaces](#interfaces)
@@ -50,6 +51,22 @@ getSteps() => Promise<{ name: string; count: number; }>
 ```
 
 Retrieves the step count value from the step counter sensor since it was started.
+Returns null if the necessary permissions have not been granted.
+Once the permissions are granted, subsequent calls will return the correct step count value.
+If the device doesn't have a step counter sensor, it won't return anything, but a message indicating that the sensor is not available will be logged to the console.
+
+**Returns:** <code>Promise&lt;{ name: string; count: number; }&gt;</code>
+
+--------------------
+
+
+### getHeartRate()
+
+```typescript
+getHeartRate() => Promise<{ name: string; count: number; }>
+```
+
+Retrieves the heart rate value from the heart rate sensor.
 Returns null if the necessary permissions have not been granted.
 Once the permissions are granted, subsequent calls will return the correct step count value.
 If the device doesn't have a step counter sensor, it won't return anything, but a message indicating that the sensor is not available will be logged to the console.

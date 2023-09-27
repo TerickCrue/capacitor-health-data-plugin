@@ -37,7 +37,7 @@ import static android.content.Context.MODE_PRIVATE;
             strings = { Manifest.permission.ACTIVITY_RECOGNITION }, 
             alias = HealthDataPlugin.PERMISSION_ALIAS_ACTIVITY_RECOGNITION
         ),
-        @permission(
+        @Permission(
             strings = { Manifest.permission.BODY_SENSORS }, 
             alias = HealthDataPlugin.PERMISSION_ALIAS_BODY_SENSORS
         )
@@ -53,7 +53,7 @@ public class HealthDataPlugin extends Plugin implements SensorEventListener {
     private Sensor stepCounterSensor;
     private Sensor heartRateSensor; 
     private float stepCount = 0;
-    private int heartRate = 0;
+    private float heartRate = 0;
     private HealthData implementation = new HealthData();
 
     @Override
