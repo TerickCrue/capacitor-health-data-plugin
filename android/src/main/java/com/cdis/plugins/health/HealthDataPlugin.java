@@ -104,13 +104,26 @@ public class HealthDataPlugin extends Plugin implements SensorEventListener {
         return res;
     }
 
-    private boolean isSensorAvailable() {
+    private boolean isStepsSensorAvailable() {
         //validate sensor.
         if(sensorManager==null){
             sensorManager = (SensorManager) this.getContext().getSystemService(Context.SENSOR_SERVICE);
         }
 
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null && sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
+            return true;
+        } else {
+            return false; // Failure! No sensor.
+        }
+    }
+
+    private boolean isHeartSensorAvailable() {
+        //validate sensor.
+        if(sensorManager==null){
+            sensorManager = (SensorManager) this.getContext().getSystemService(Context.SENSOR_SERVICE);
+        }
+
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
             return true;
         } else {
             return false; // Failure! No sensor.
@@ -132,7 +145,7 @@ public class HealthDataPlugin extends Plugin implements SensorEventListener {
     @PluginMethod
     public void getSteps(PluginCall call){
         //
-        if(isSensorAvailable()){
+        if(isStepsSensorAvailable()){
             if (getPermissionState(PERMISSION_ALIAS_ACTIVITY_RECOGNITION) == PermissionState.GRANTED) {
                 this.load();
                 this.registerAvailableSensors();
@@ -156,7 +169,7 @@ public class HealthDataPlugin extends Plugin implements SensorEventListener {
     @PluginMethod
     public void getHeartRate(PluginCall call){
         //
-        if(isSensorAvailable()){
+        if(isHeartSensorAvailable()){
             if (getPermissionState(PERMISSION_ALIAS_BODY_SENSORS) == PermissionState.GRANTED) {
                 this.load();
                 this.registerAvailableSensors();
